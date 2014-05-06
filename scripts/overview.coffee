@@ -19,8 +19,8 @@ class OverviewTab extends ReportTab
 
   render: () ->
     attributes = @model.getAttributes()
+    
     msg =  @recordSet("DemoReport", "ResultMsg").data['value']
-    console.log('msg: ', msg)
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
