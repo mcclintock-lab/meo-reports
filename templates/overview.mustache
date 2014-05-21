@@ -1,4 +1,20 @@
-<div class="reportSection">
-  <h4>Overview</h4>
-  {{msg}}
-</div>
+
+<div class="reportSection tableContainer">
+<h4>Energy Results</h4>
+{{#d3IsPresent}}
+  <table > 
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#demos}}
+      <tr><td>{{NAME}}</td><td>{{VALUE}}</td></tr>
+      {{/demos}}
+    </tbody>
+  </table>
+{{/d3IsPresent}}
+
+

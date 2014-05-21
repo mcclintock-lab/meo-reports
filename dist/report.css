@@ -362,8 +362,8 @@
 .reportView .reportSection.tableContainer p {
   padding: 10px;
 }
-.reportView .demo .axis path,
-.reportView .demo .axis line {
+.reportView .axis path,
+.reportView .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
