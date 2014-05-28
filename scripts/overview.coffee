@@ -16,7 +16,13 @@ class OverviewTab extends ReportTab
     'EnergyPlanMeo'
     'EnergyPlanGP2'
   ]
+
   render: () ->
+    if window.d3
+      d3IsPresent = true
+    else
+      d3IsPresent = false
+
     attributes = @model.getAttributes()
 
     try
@@ -41,6 +47,7 @@ class OverviewTab extends ReportTab
       resEC: resEC
       resEU: resEU
       resGHG: resGHG
+      d3IsPresent: d3IsPresent
 
     @$el.html @template.render(context, partials)
     @enableLayerTogglers()
