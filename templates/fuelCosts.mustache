@@ -1,0 +1,26 @@
+
+
+<div class="reportSection tableContainer">
+  <h4>Fuel Costs -- 2012 Dollars</h4>
+  <table >
+    <thead>
+      <tr>
+        <th>PA 295</th>
+        <th>No PA 295</th>
+        <th>PA 295 Doubled</sup></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td colspan=3 style="text-align:center;"><strong>Commercial</strong></td>
+      </tr>
+      {{#comFC}}
+      <tr><td>{{PA}}</td><td>{{NoPA}}</td><td>{{DblPA}}</td></tr>
+      {{/comFC}}
+      <tr><td colspan=3 style="text-align:center"><strong>Residential</strong></td></tr>
+       {{#resFC}}
+      <tr><td>{{PA}}</td><td>{{NoPA}}</td><td>{{DblPA}}</td></tr>
+      {{/resFC}}
+    </tbody>
+  </table>
+</div>
