@@ -1,12 +1,77 @@
 @import '../node_modules/seasketch-reporting-api/stylesheets/common.less';
 
+.viz {
+  position:relative;
+  margin-left: 20px;
+  margin-top: 20px;
+  p {
+    padding-top:35px !important;
+    width:100%;
+    text-align:center;
+  }
+
+  div.score {
+    position:absolute;
+    color:blue;
+    &:before {
+      content:'▼';
+      left:-10px;
+      top:-17px;
+      font-size:18px;
+      position:relative;
+    }
+  }
+
+  svg {
+    font: 10px sans-serif;
+  }
+
+  .axis path, .axis line {
+    fill: none;
+    shape-rendering: crispEdges;
+  }
+
+  .bar {
+    fill: steelblue;
+  }
+
+
+  .score {
+    font-size:16px
+    color:green;
+    background-color:blue;
+  }
+
+  .legends {
+    margin-top:5px;
+    margin-left:40px;
+  }
+  .legend {
+    margin-right:10px;
+    float:left;
+    font-size:10px;
+    span {
+      margin:10px 3px;
+      display:inline-block;
+      width:10px;
+      height:10px;
+      vertical-align:middle;
+    }
+  }
+
+}
+
 .reportView {
   .axis {
     path, line {
       fill: none;
-      stroke: #000;
       shape-rendering: crispEdges;
     }
   }
+}
+.ttip-tip{
+	text-align: center;
+	margin-left: 40px;
+	font-style: italic;
 }
 

@@ -1,26 +1,17 @@
 
+
 <div class="reportSection tableContainer">
-  <h4>Energy Consumption -- MMBTU Equivalent</h4>
-  <table >
-    <thead>
-      <tr>
-        <th>PA 295</th>
-        <th>No PA 295</th>
-        <th>PA 295 Doubled</sup></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-      <td colspan=3 style="text-align:center;"><strong>Commercial</strong></td>
-      </tr>
-      {{#comEC}}
-      <tr><td>{{PA}}</td><td>{{NoPA}}</td><td>{{DblPA}}</td></tr>
-      {{/comEC}}
-      <tr><td colspan=3 style="text-align:center"><strong>Residential</strong></td></tr>
-       {{#resEC}}
-      <tr><td>{{PA}}</td><td>{{NoPA}}</td><td>{{DblPA}}</td></tr>
-      {{/resEC}}
-    </tbody>
-  </table>
+  <h4>Commercial Energy Consumption -- MMBTU Equivalent</h4>
+  <p class="small ttip-tip">
+     Tip: hover over a value to see details
+  </p>
+    <div  id="commercialEnergyConsumption" class="commercialEnergyConsumption"></div>
 </div>
 
+<div class="reportSection tableContainer">
+  <h4>Residential Energy Consumption -- MMBTU Equivalent</h4>
+  <p class="small ttip-tip">
+     Tip: hover over a value to see details
+  </p>
+    <div  id="residentialEnergyConsumption" class="residentialEnergyConsumption"></div>
+</div>

@@ -362,9 +362,66 @@
 .reportView .reportSection.tableContainer p {
   padding: 10px;
 }
+.viz {
+  position: relative;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.viz p {
+  padding-top: 35px !important;
+  width: 100%;
+  text-align: center;
+}
+.viz div.score {
+  position: absolute;
+  color: blue;
+}
+.viz div.score:before {
+  content: '▼';
+  left: -10px;
+  top: -17px;
+  font-size: 18px;
+  position: relative;
+}
+.viz svg {
+  font: 10px sans-serif;
+}
+.viz .axis path,
+.viz .axis line {
+  fill: none;
+  shape-rendering: crispEdges;
+}
+.viz .bar {
+  fill: steelblue;
+}
+.viz .score {
+  font-size: 16px
+    color:green;
+  background-color: blue;
+}
+.viz .legends {
+  margin-top: 5px;
+  margin-left: 40px;
+}
+.viz .legend {
+  margin-right: 10px;
+  float: left;
+  font-size: 10px;
+}
+.viz .legend span {
+  margin: 10px 3px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  vertical-align: middle;
+}
 .reportView .axis path,
 .reportView .axis line {
   fill: none;
-  stroke: #000;
   shape-rendering: crispEdges;
+}
+.ttip-tip {
+  text-align: center;
+  margin-left: 40px;
+  font-style: italic;
 }
