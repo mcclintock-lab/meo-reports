@@ -129,7 +129,7 @@ class GreenhouseGasesTab extends ReportTab
     chart = (selection) ->
       selection.each (data) ->
         y = []
-        x = [2010, 2015, 2020, 2025, 2030, 2035]
+        x = [2012, 2015, 2020, 2025, 2030, 2035]
        
         for scen in data
           for d in scen
@@ -145,9 +145,9 @@ class GreenhouseGasesTab extends ReportTab
 
         panelheight = height
 
-        xlim = [d3.min(x)-2, parseFloat(d3.max(x)+2)] if !(xlim?)
+        xlim = [d3.min(x)-1, parseFloat(d3.max(x)+1)] if !(xlim?)
 
-        ylim = [d3.min(y)-0.5, parseFloat(d3.max(y)+0.5)] if !(ylim?)
+        ylim = [d3.min(y), parseFloat(d3.max(y))] if !(ylim?)
 
 
         currelem = d3.select(view.$(whichChart)[0])
