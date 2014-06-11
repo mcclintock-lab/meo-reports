@@ -62,10 +62,11 @@ class GreenhouseGasesTab extends ReportTab
       halfw = (w+margin.left+margin.right)
       totalw = halfw*2
       
+
       com_chart = @drawChart('.commercialGreenhouseGases').xvar(0)
                              .yvar(1)
                              .xlab("Year")
-                             .ylab("Value (in million $)")
+                             .ylab("Value")
                              .height(h)
                              .width(w)
                              .margin(margin)
@@ -77,7 +78,7 @@ class GreenhouseGasesTab extends ReportTab
       res_chart = @drawChart('.residentialGreenhouseGases').xvar(0)
                      .yvar(1)
                      .xlab("Year")
-                     .ylab("Value (in million $)")
+                     .ylab("Value")
                      .height(h)
                      .width(w)
                      .margin(margin)
