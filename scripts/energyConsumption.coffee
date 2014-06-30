@@ -8,7 +8,7 @@ for key, val of _partials
 
 class EnergyConsumptionTab extends ReportTab
   # this is the name that will be displayed in the Tab
-  name: 'EnergyConsumption'
+  name: 'Energy Consumption'
   className: 'EnergyConsumption'
   timeout: 120000
   template: templates.energyConsumption
