@@ -13,8 +13,7 @@ class FuelCostsTab extends ReportTab
   timeout: 120000
   template: templates.fuelCosts
   dependencies: [
-    'EnergyPlanMeo'
-    'EnergyPlanGP2'
+    'EnergyPlan'
   ]
 
   render: () ->
@@ -26,16 +25,16 @@ class FuelCostsTab extends ReportTab
     attributes = @model.getAttributes()
 
     try
-      comFC = @getMap(@recordSet("EnergyPlanGP2", "ComEC").toArray())
-      resFC = @getMap(@recordSet("EnergyPlanGP2", "ResEC").toArray())
+      comFC = @getMap(@recordSet("EnergyPlan", "ComEC").toArray())
+      resFC = @getMap(@recordSet("EnergyPlan", "ResEC").toArray())
 
-      comFC = @recordSet("EnergyPlanGP2", "ComEC").toArray()
+      comFC = @recordSet("EnergyPlan", "ComEC").toArray()
       com_pa = @getMap(comFC, "PA")
       com_dblpa = @getMap(comFC, "DblPA")
       com_nopa = @getMap(comFC, "NoPA")
       sorted_comm_results = [com_nopa, com_pa, com_dblpa]
 
-      resFC = @recordSet("EnergyPlanGP2", "ResEU").toArray()
+      resFC = @recordSet("EnergyPlan", "ResEU").toArray()
       res_pa = @getMap(resFC, "PA")
       res_dblpa = @getMap(resFC, "DblPA")
       res_nopa = @getMap(resFC, "NoPA")

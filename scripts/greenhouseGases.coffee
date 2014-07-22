@@ -13,8 +13,7 @@ class GreenhouseGasesTab extends ReportTab
   timeout: 120000
   template: templates.greenhouseGases
   dependencies: [
-    'EnergyPlanMeo'
-    'EnergyPlanGP2'
+    'EnergyPlan'
   ]
 
   render: () ->
@@ -26,8 +25,8 @@ class GreenhouseGasesTab extends ReportTab
     attributes = @model.getAttributes()
 
     try
-      comGHG = @recordSet("EnergyPlanGP2", "ComGHG").toArray()
-      resGHG = @recordSet("EnergyPlanGP2", "ResGHG").toArray()
+      comGHG = @recordSet("EnergyPlan", "ComGHG").toArray()
+      resGHG = @recordSet("EnergyPlan", "ResGHG").toArray()
 
       com_pa = @getMap(comGHG, "PA")
       com_dblpa = @getMap(comGHG, "DblPA")

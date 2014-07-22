@@ -13,9 +13,10 @@ class EnergyConsumptionTab extends ReportTab
   timeout: 120000
   template: templates.energyConsumption
   dependencies: [
-    'EnergyPlanMeo'
-    'EnergyPlanGP2'
+    'EnergyPlan'
   ]
+
+
 
   render: () ->
     if window.d3
@@ -24,15 +25,17 @@ class EnergyConsumptionTab extends ReportTab
       d3IsPresent = false
 
     attributes = @model.getAttributes()
-
+    outmsg = @recordSet("EnergyPlan", "ResultMsg")
+    console.log("output is......... ", outmsg)
+    
     try
-      comEC = @recordSet("EnergyPlanGP2", "ComEU").toArray()
+      comEC = @recordSet("EnergyPlan", "ComEU").toArray()
       com_pa = @getMap(comEC, "PA")
       com_dblpa = @getMap(comEC, "DblPA")
       com_nopa = @getMap(comEC, "NoPA")
       sorted_comm_results = [com_nopa, com_pa, com_dblpa]
 
-      resEC = @recordSet("EnergyPlanGP2", "ResEU").toArray()
+      resEC = @recordSet("EnergyPlan", "ResEU").toArray()
       res_pa = @getMap(resEC, "PA")
       res_dblpa = @getMap(resEC, "DblPA")
       res_nopa = @getMap(resEC, "NoPA")
