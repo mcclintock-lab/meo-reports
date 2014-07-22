@@ -32,12 +32,14 @@ class FuelCostsTab extends ReportTab
       com_pa = @getMap(comFC, "PA")
       com_dblpa = @getMap(comFC, "DblPA")
       com_nopa = @getMap(comFC, "NoPA")
+      com_user = @getMap(comFC, "USER")
       sorted_comm_results = [com_nopa, com_pa, com_dblpa]
 
       resFC = @recordSet("EnergyPlan", "ResEU").toArray()
       res_pa = @getMap(resFC, "PA")
       res_dblpa = @getMap(resFC, "DblPA")
       res_nopa = @getMap(resFC, "NoPA")
+      res_user = @getMap(resFC, "USER")
       sorted_res_results = [res_nopa, res_pa, res_dblpa]
     catch e
       console.log("error: ", e)

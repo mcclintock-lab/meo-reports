@@ -31,11 +31,13 @@ class GreenhouseGasesTab extends ReportTab
       com_pa = @getMap(comGHG, "PA")
       com_dblpa = @getMap(comGHG, "DblPA")
       com_nopa = @getMap(comGHG, "NoPA")
+      com_user = @getMap(comGHG, "USER")
       sorted_comm_results = [com_nopa, com_pa, com_dblpa]
 
       res_pa = @getMap(resGHG, "PA")
       res_dblpa = @getMap(resGHG, "DblPA")
       res_nopa = @getMap(resGHG, "NoPA")
+      res_user = @getMap(resGHG, "USER")
       sorted_res_results = [res_nopa, res_pa, res_dblpa]
 
     catch e

@@ -26,19 +26,23 @@ class EnergyConsumptionTab extends ReportTab
 
     attributes = @model.getAttributes()
     outmsg = @recordSet("EnergyPlan", "ResultMsg")
-    console.log("output is......... ", outmsg)
+    
     
     try
       comEC = @recordSet("EnergyPlan", "ComEU").toArray()
       com_pa = @getMap(comEC, "PA")
       com_dblpa = @getMap(comEC, "DblPA")
       com_nopa = @getMap(comEC, "NoPA")
+      com_user = @getMap(comEC, "USER")
+      console.log("user values are ......... ", com_user)
       sorted_comm_results = [com_nopa, com_pa, com_dblpa]
 
       resEC = @recordSet("EnergyPlan", "ResEU").toArray()
       res_pa = @getMap(resEC, "PA")
       res_dblpa = @getMap(resEC, "DblPA")
       res_nopa = @getMap(resEC, "NoPA")
+      res_user = @getMap(resEC, "USER")
+      console.log("user values are ......... ", res_user)
       sorted_res_results = [res_nopa, res_pa, res_dblpa]
     catch e
       console.log("error: ", e)
