@@ -65,6 +65,7 @@ module.exports = (grunt) ->
         transform: ['coffeeify']
         debug: true
         alias: [
+          'scripts/reportGraphTab.coffee:reportGraphTab'
           'node_modules/seasketch-reporting-api/scripts/reportTab.coffee:reportTab'
           'node_modules/seasketch-reporting-api/scripts/utils.coffee:api/utils'
           'node_modules/seasketch-reporting-api/templates/templates.js:api/templates'
