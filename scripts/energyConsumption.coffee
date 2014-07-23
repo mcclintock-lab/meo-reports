@@ -12,6 +12,9 @@ class EnergyConsumptionTab extends ReportGraphTab
   className: 'EnergyConsumption'
   timeout: 120000
   template: templates.energyConsumption
+  dependencies: [
+    'EnergyPlan'
+  ]
 
   render: () ->
     if window.d3
@@ -20,17 +23,17 @@ class EnergyConsumptionTab extends ReportGraphTab
       d3IsPresent = false
 
     attributes = @model.getAttributes()
-    
     try
       comEC = @recordSet("EnergyPlan", "ComEU").toArray()
+      resEC = @recordSet("EnergyPlan", "ResEU").toArray()
+
       com_pa = @getMap(comEC, "PA")
       com_dblpa = @getMap(comEC, "DblPA")
       com_nopa = @getMap(comEC, "NoPA")
       com_user_savings = @getUserSavings(comEC, "USER", 1)
       com_user = @getUserMap(comEC, "USER", com_nopa)
-      sorted_comm_results = [com_nopa, com_pa, com_dblpa, com_user]
+      sorted_comm_results = [com_nopa, com_pa, com_dblpa]
 
-      resEC = @recordSet("EnergyPlan", "ResEU").toArray()
       res_pa = @getMap(resEC, "PA")
       res_dblpa = @getMap(resEC, "DblPA")
       res_nopa = @getMap(resEC, "NoPA")

@@ -13,7 +13,9 @@ class GreenhouseGasesTab extends ReportGraphTab
   className: 'greenhouseGases'
   timeout: 120000
   template: templates.greenhouseGases
-
+  dependencies: [
+    'EnergyPlan'
+  ]
 
   render: () ->
     if window.d3
@@ -32,7 +34,7 @@ class GreenhouseGasesTab extends ReportGraphTab
       com_nopa = @getMap(comGHG, "NoPA")
       com_user_savings = @getUserSavings(comGHG, "USER", 1)
       com_user = @getUserMap(comGHG, "USER", com_nopa)
-      sorted_comm_results = [com_nopa, com_pa, com_dblpa, com_user]
+      sorted_comm_results = [com_nopa, com_pa, com_dblpa]
 
       res_pa = @getMap(resGHG, "PA")
       res_dblpa = @getMap(resGHG, "DblPA")

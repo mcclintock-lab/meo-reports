@@ -11,16 +11,14 @@ class ReportGraphTab extends ReportTab
   name: 'ReportGraph'
   className: 'ReportGraph'
   timeout: 120000
-  dependencies: [
-    'EnergyPlan'
-  ]
+
 
   getUserSavings: (recSet, user_tag, decs) ->
     savings = 0
     for rec in recSet
       if rec.TYPE == user_tag
         savings+=rec.VALUE
-
+    console.log("USER SAVINGS!!!!!")
     return Math.round(savings, decs)
 
   getUserMap: (recSet, user_tag, base_values) ->
@@ -29,7 +27,8 @@ class ReportGraphTab extends ReportTab
       if rec.TYPE == user_tag
         user_start_values.push(rec)
     user_start_values = _.sortBy user_start_values, (row) -> row['YEAR']
-    
+    return user_start_values
+
     user_values = []
     for val, dex in base_values
       user_val = user_start_values[dex].VALUE
@@ -39,7 +38,6 @@ class ReportGraphTab extends ReportTab
       user_values.push(user_start_values[dex])
 
     return user_values
-
 
   getMap: (recSet, scenario) ->
     scenario_values = []

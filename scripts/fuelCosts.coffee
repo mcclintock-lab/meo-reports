@@ -12,6 +12,9 @@ class FuelCostsTab extends ReportGraphTab
   className: 'fuelCosts'
   timeout: 120000
   template: templates.fuelCosts
+  dependencies: [
+    'EnergyPlan'
+  ]
 
   render: () ->
     if window.d3
@@ -22,27 +25,26 @@ class FuelCostsTab extends ReportGraphTab
     attributes = @model.getAttributes()
 
     try
-      comFC = @getMap(@recordSet("EnergyPlan", "ComEC").toArray())
-      resFC = @getMap(@recordSet("EnergyPlan", "ResEC").toArray())
-
       comFC = @recordSet("EnergyPlan", "ComEC").toArray()
+      resFC = @recordSet("EnergyPlan", "ResEC").toArray()
+
       com_pa = @getMap(comFC, "PA")
       com_dblpa = @getMap(comFC, "DblPA")
       com_nopa = @getMap(comFC, "NoPA")
-      com_user_savings = @getUserSavings(resFC, "USER")
+      com_user_savings = @getUserSavings(comFC, "USER")
       com_user = @getUserMap(comFC, "USER", com_nopa)
-      sorted_comm_results = [com_nopa, com_pa, com_dblpa, com_user]
+      sorted_comm_results = [com_nopa, com_pa, com_dblpa]
+      console.log("fuel cost sorted comm results", sorted_comm_results)
 
-      resFC = @recordSet("EnergyPlan", "ResEU").toArray()
       res_pa = @getMap(resFC, "PA")
       res_dblpa = @getMap(resFC, "DblPA")
       res_nopa = @getMap(resFC, "NoPA")
       res_user_savings = @getUserSavings(resFC, "USER")
       res_user = @getUserMap(resFC, "USER", res_nopa)
-      
       sorted_res_results = [res_nopa, res_pa, res_dblpa, res_user]
+      console.log("fuel cost sorted res results", sorted_comm_results)
     catch e
-      console.log("error: ", e)
+      console.log("error....................: ", e)
 
     context =
       sketch: @model.forTemplate()
