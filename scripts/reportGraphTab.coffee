@@ -13,13 +13,23 @@ class ReportGraphTab extends ReportTab
   timeout: 120000
 
 
-  getUserSavings: (recSet, user_tag, decs) ->
+  getUserSavings: (recSet, user_start_values, base_values, decs) ->
+    """
     savings = 0
     for rec in recSet
       if rec.TYPE == user_tag
         savings+=rec.VALUE
-    console.log("USER SAVINGS!!!!!")
     return Math.round(savings, decs)
+    """
+    savings = 0
+    try
+      for val, dex in base_values
+        user_val = user_start_values[dex].VALUE
+        base_val = val.VALUE
+        savings += (base_val - user_val)
+      return Math.round(savings, decs)
+    catch error
+      return 0.0
 
   getUserMap: (recSet, user_tag, base_values) ->
     user_start_values = []
@@ -29,15 +39,7 @@ class ReportGraphTab extends ReportTab
     user_start_values = _.sortBy user_start_values, (row) -> row['YEAR']
     return user_start_values
 
-    user_values = []
-    for val, dex in base_values
-      user_val = user_start_values[dex].VALUE
-      base_val = val.VALUE
-      user_start_values[dex].VALUE = base_val - user_val
 
-      user_values.push(user_start_values[dex])
-
-    return user_values
 
   getMap: (recSet, scenario) ->
     scenario_values = []

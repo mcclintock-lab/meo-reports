@@ -22,7 +22,6 @@ class GreenhouseGasesTab extends ReportGraphTab
       d3IsPresent = true
     else
       d3IsPresent = false
-
     attributes = @model.getAttributes()
 
     try
@@ -32,15 +31,17 @@ class GreenhouseGasesTab extends ReportGraphTab
       com_pa = @getMap(comGHG, "PA")
       com_dblpa = @getMap(comGHG, "DblPA")
       com_nopa = @getMap(comGHG, "NoPA")
-      com_user_savings = @getUserSavings(comGHG, "USER", 1)
+      
       com_user = @getUserMap(comGHG, "USER", com_nopa)
+      com_user_savings = @getUserSavings(comGHG, com_user,com_nopa, 1)
       sorted_comm_results = [com_nopa, com_pa, com_dblpa]
 
       res_pa = @getMap(resGHG, "PA")
       res_dblpa = @getMap(resGHG, "DblPA")
       res_nopa = @getMap(resGHG, "NoPA")
-      res_user_savings = @getUserSavings(resGHG, "USER", 1)
+      
       res_user = @getUserMap(resGHG, "USER", res_nopa)
+      res_user_savings = @getUserSavings(resGHG, res_user,res_nopa, 1)
       sorted_res_results = [res_nopa, res_pa, res_dblpa, res_user]
 
     catch e

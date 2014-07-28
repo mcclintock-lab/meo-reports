@@ -31,18 +31,18 @@ class FuelCostsTab extends ReportGraphTab
       com_pa = @getMap(comFC, "PA")
       com_dblpa = @getMap(comFC, "DblPA")
       com_nopa = @getMap(comFC, "NoPA")
-      com_user_savings = @getUserSavings(comFC, "USER")
+      
       com_user = @getUserMap(comFC, "USER", com_nopa)
+      com_user_savings = @getUserSavings(comFC, com_user, com_nopa, 2)
       sorted_comm_results = [com_nopa, com_pa, com_dblpa]
-      console.log("fuel cost sorted comm results", sorted_comm_results)
 
       res_pa = @getMap(resFC, "PA")
       res_dblpa = @getMap(resFC, "DblPA")
       res_nopa = @getMap(resFC, "NoPA")
-      res_user_savings = @getUserSavings(resFC, "USER")
+      
       res_user = @getUserMap(resFC, "USER", res_nopa)
+      res_user_savings = @getUserSavings(resFC, res_user, res_nopa, 2)
       sorted_res_results = [res_nopa, res_pa, res_dblpa, res_user]
-      console.log("fuel cost sorted res results", sorted_comm_results)
     catch e
       console.log("error....................: ", e)
 

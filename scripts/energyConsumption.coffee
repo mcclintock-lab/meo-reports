@@ -30,15 +30,17 @@ class EnergyConsumptionTab extends ReportGraphTab
       com_pa = @getMap(comEC, "PA")
       com_dblpa = @getMap(comEC, "DblPA")
       com_nopa = @getMap(comEC, "NoPA")
-      com_user_savings = @getUserSavings(comEC, "USER", 1)
+      
       com_user = @getUserMap(comEC, "USER", com_nopa)
+      com_user_savings = @getUserSavings(comEC, com_user, com_nopa, 1)
       sorted_comm_results = [com_nopa, com_pa, com_dblpa]
 
       res_pa = @getMap(resEC, "PA")
       res_dblpa = @getMap(resEC, "DblPA")
       res_nopa = @getMap(resEC, "NoPA")
-      res_user_savings = @getUserSavings(resEC, "USER", 1)
+      
       res_user = @getUserMap(resEC, "USER", res_nopa)
+      res_user_savings = @getUserSavings(resEC, res_user, res_nopa, 1)
       sorted_res_results = [res_nopa, res_pa, res_dblpa, res_user]
     catch e
       console.log("error: ", e)
