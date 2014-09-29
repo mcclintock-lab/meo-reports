@@ -34,7 +34,7 @@ class GreenhouseGasesTab extends ReportGraphTab
       
       com_user = @getUserMap(comGHG, "USER", com_nopa)
       com_user_savings = @getUserSavings(comGHG, com_user,com_nopa, 1)
-      sorted_comm_results = [com_nopa, com_pa, com_dblpa]
+      sorted_comm_results = [com_nopa, com_pa, com_dblpa, com_user]
 
       res_pa = @getMap(resGHG, "PA")
       res_dblpa = @getMap(resGHG, "DblPA")

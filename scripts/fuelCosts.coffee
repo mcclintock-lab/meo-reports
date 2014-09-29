@@ -34,7 +34,7 @@ class FuelCostsTab extends ReportGraphTab
       
       com_user = @getUserMap(comFC, "USER", com_nopa)
       com_user_savings = @getUserSavings(comFC, com_user, com_nopa, 2)
-      sorted_comm_results = [com_nopa, com_pa, com_dblpa]
+      sorted_comm_results = [com_nopa, com_pa, com_dblpa, com_user]
 
       res_pa = @getMap(resFC, "PA")
       res_dblpa = @getMap(resFC, "DblPA")

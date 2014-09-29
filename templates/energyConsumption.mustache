@@ -2,16 +2,44 @@
 <p>
 	In October 2008, Michigan enacted the <a href="http://www.legislature.mi.gov/(S(q4eb4jzir2g3hazhzhl1td45))/mileg.aspx?page=getobject&objectName=mcl-act-295-of-2008">Clean, Renewable, and Efficient Energy Act, Public Act 295</a> <strong>(PA 295)</strong> A description of each scenario is provided at the bottom of the page. 
 </p>
+
 <div class="reportSection tableContainer">
   <h4>Commercial Energy Consumption -- MMBTU Equivalent</h4>
-  <!-- < p class="total-value">The total commercial energy savings is <strong>{{com_user_savings}}</strong></p> -->
+    <p>
+      <select class="comm-chosen-ec">
+        <option class="default-chosen-selection" label="Compare to Scenario"></option>
+        {{#scenarios}}
+          <option value="{{.}}">{{.}}</option>
+        {{/scenarios}}
+      </select>
+    </p>
+  <p class="no_pa_295_comm_ec">The total commercial energy savings relative to the No PA 295 scenario is <strong>{{comm_diff_no_pa_295}}</strong>
+  </p>
+   <p class="pa_295_comm_ec">The total commercial energy savings relative to the PA 295 scenario is <strong>{{comm_diff_pa_295}}</strong>
+  </p>
+   <p class="double_pa_295_comm_ec">The total commercial energy savings relative to the Double PA 295 scenario is <strong>{{comm_diff_double_pa_295}}</strong>
+  </p>
   <p class="small ttip-tip">
   </p>
     <div  id="commercialEnergyConsumption" class="commercialEnergyConsumption"></div>
 </div>
+
 <div class="reportSection tableContainer">
   <h4>Residential Energy Consumption -- MMBTU Equivalent</h4>
-  <p style="margin-left:20px;" class="total-value">The sumtotal residential energy savings by 2035 is <strong>{{res_user_savings}}</strong></p>
+    <p>
+      <select class="res-chosen-ec">
+        <option class="default-chosen-selection" label="Compare to Scenario"></option>
+        {{#scenarios}}
+          <option value="{{.}}">{{.}}</option>
+        {{/scenarios}}
+      </select>
+    </p>
+  <p class="no_pa_295_res_ec">The total residential energy savings relative to the No PA 295 scenario is <strong>{{res_diff_no_pa_295}}</strong>
+  </p>
+   <p class="pa_295_res_ec">The total residential energy savings relative to the PA 295 scenario is <strong>{{res_diff_pa_295}}</strong>
+  </p>
+   <p class="double_pa_295_res_ec">The total residential energy savings relative to the Double PA 295 scenario is <strong>{{res_diff_double_pa_295}}</strong>
+  </p>
   <p class="small ttip-tip">
   </p>
     <div  id="residentialEnergyConsumption" class="residentialEnergyConsumption"></div>
@@ -27,3 +55,4 @@
 		<strong>PA 295 Double</strong> - The result of doubling Michigan's Energy Efficiency Resource and Renewable Portfolio Standards. Energy consumption is reduced, each year, by 2% of the previous year's total consumption, and 20% of electricity demand comes from renewable energy sources.
 	</p>
 </p>
+

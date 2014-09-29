@@ -12,15 +12,29 @@ class ReportGraphTab extends ReportTab
   className: 'ReportGraph'
   timeout: 120000
 
+  renderDiffs: (which_chosen, ce, tab) -> 
+
+    name = @$(which_chosen).val()
+    @$('.default-chosen-selection'+'_'+tab).hide()
+
+    if name == "No PA 295"
+      @$(@getElemName('.no_pa_295', ce, tab)).show()
+      @$(@getElemName('.pa_295',ce,tab)).hide()
+      @$(@getElemName('.double_pa_295',ce,tab)).hide()
+    else if name == "PA 295"
+      @$(@getElemName('.no_pa_295',ce,tab)).hide()
+      @$(@getElemName('.pa_295', ce, tab)).show()
+      @$(@getElemName('.double_pa_295',ce,tab)).hide()
+    else
+      @$(@getElemName('.no_pa_295',ce,tab)).hide()
+      @$(@getElemName('.pa_295',ce,tab)).hide()
+      @$(@getElemName('.double_pa_295',ce,tab)).show()
+
+  getElemName: (name, comm_or_ec, tab) ->
+    return name+"_"+comm_or_ec+"_"+tab
 
   getUserSavings: (recSet, user_start_values, base_values, decs) ->
-    """
-    savings = 0
-    for rec in recSet
-      if rec.TYPE == user_tag
-        savings+=rec.VALUE
-    return Math.round(savings, decs)
-    """
+
     savings = 0
     try
       for val, dex in base_values
@@ -34,17 +48,16 @@ class ReportGraphTab extends ReportTab
   getUserMap: (recSet, user_tag, base_values) ->
     user_start_values = []
     for rec in recSet
-      if rec.TYPE == user_tag
+      if rec and rec.TYPE == user_tag
         user_start_values.push(rec)
     user_start_values = _.sortBy user_start_values, (row) -> row['YEAR']
     return user_start_values
 
 
-
   getMap: (recSet, scenario) ->
     scenario_values = []
     for rec in recSet
-      if rec.TYPE == scenario
+      if rec and rec.TYPE == scenario
         scenario_values.push(rec)
 
     return _.sortBy scenario_values, (row) -> row['YEAR']
@@ -64,7 +77,7 @@ class ReportGraphTab extends ReportTab
 
     rectcolor = "#dbe4ee"
     tickcolor = "#dbe4ff"
-
+    console.log("drawing chart now...")
 
     pointsize = 1 # default = no visible points at markers
     xlab = "X"
@@ -386,6 +399,8 @@ class ReportGraphTab extends ReportTab
 
   getScenarioName = (scenario) ->
     for d in scenario
+      if d is undefined
+          return "User Scenario (with errors)"
       if d.TYPE == "PA"
         return "PA 295"
       else if d.TYPE == "NoPA"
