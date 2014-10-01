@@ -23,7 +23,7 @@ class EnergyConsumptionTab extends ReportGraphTab
       d3IsPresent = false
 
     try
-      scenarios = ['','PA 295', 'No PA 295', 'Double PA 295']
+      
       msg = @recordSet("EnergyPlan", "ResultMsg")
       console.log("msg is ", msg)
 
@@ -36,7 +36,7 @@ class EnergyConsumptionTab extends ReportGraphTab
       com_nopa = @getMap(comEC, "NoPA")
       
       com_user = @getUserMap(comEC, "USER", com_nopa)
-      console.log("commercial user values: ", com_user)
+
       com_user_savings = @getUserSavings(comEC, com_user, com_nopa, 1)
 
       sorted_comm_results = [com_nopa, com_pa, com_dblpa, com_user]
@@ -48,9 +48,57 @@ class EnergyConsumptionTab extends ReportGraphTab
       res_user = @getUserMap(resEC, "USER", res_nopa)
       res_user_savings = @getUserSavings(resEC, res_user, res_nopa, 1)
       sorted_res_results = [res_nopa, res_pa, res_dblpa, res_user]
-      comm_diff_no_pa_295 = 5
-      comm_diff_pa_295 = 10
-      comm_diff_double_pa_295 = 20
+
+
+      scenarios = ['','PA 295', 'No PA 295', 'Double PA 295']
+
+      res_sum = @recordSet("EnergyPlan", "ResEUSum").float('USER_SUM', 1)
+      res_pa295_total_ec =  @recordSet("EnergyPlan", "ResEUSum").float('PA_SUM', 1)
+      res_no_pa295_total_ec =  @recordSet("EnergyPlan", "ResEUSum").float('NOPA_SUM', 1)
+      res_dbl_pa295_total_ec = @recordSet("EnergyPlan", "ResEUSum").float('DBLPA_SUM', 1)
+
+      res_pa295_diff = Math.round((res_pa295_total_ec - res_sum),0)
+
+      res_has_savings_pa295 = res_pa295_diff > 0
+      if not res_has_savings_pa295
+        res_has_savings_pa295 = res_has_savings_pa295*-1
+      res_pa295_diff = @addCommas res_pa295_diff
+  
+      res_no_pa295_diff = Math.round((res_no_pa295_total_ec - res_sum),0)
+      res_has_savings_no_pa295 = res_no_pa295_diff > 0
+      if not res_has_savings_no_pa295
+        res_has_savings_no_pa295 = res_has_savings_no_pa295*-1
+      res_no_pa295_diff = @addCommas res_no_pa295_diff
+
+      res_dbl_pa295_diff =  Math.round((res_dbl_pa295_total_ec - res_sum),0)
+      res_has_savings_dbl_pa295 = res_dbl_pa295_diff > 0
+      if res_has_savings_dbl_pa295
+        res_has_savings_dbl_pa295 = res_has_savings_dbl_pa295*-1
+      res_dbl_pa295_diff = @addCommas res_dbl_pa295_diff
+
+      comm_sum = @recordSet("EnergyPlan", "ComEUSum").float('USER_SUM', 1)
+      comm_pa295_total_ec =     @recordSet("EnergyPlan", "ComEUSum").float('PA_SUM', 1)
+      comm_no_pa295_total_ec =  @recordSet("EnergyPlan", "ComEUSum").float('NOPA_SUM', 1)
+      comm_dbl_pa295_total_ec = @recordSet("EnergyPlan", "ComEUSum").float('DBLPA_SUM', 1)
+
+      comm_pa295_diff = Math.round((comm_pa295_total_ec - comm_sum),0)
+      
+      comm_has_savings_pa295 = comm_pa295_diff > 0
+      if not comm_has_savings_pa295
+        comm_pa295_diff=comm_pa295_diff*-1
+      comm_pa295_diff = @addCommas comm_pa295_diff
+
+      comm_no_pa295_diff =  Math.round((comm_no_pa295_total_ec - comm_sum),0)
+      comm_has_savings_no_pa295 = comm_no_pa295_diff > 0
+      if not comm_has_savings_no_pa295
+        comm_no_pa295_diff = comm_no_pa295_diff*-1
+      comm_no_pa295_diff = @addCommas comm_no_pa295_diff
+
+      comm_dbl_pa295_diff = Math.round((comm_dbl_pa295_total_ec - comm_sum),0)
+      comm_has_savings_dbl_pa295 = comm_dbl_pa295_diff > 0
+      if not comm_has_savings_dbl_pa295
+        comm_dbl_pa295_diff = comm_dbl_pa295_diff*-1
+      comm_dbl_pa295_diff = @addCommas comm_dbl_pa295_diff
 
     catch e
       console.log("error: ", e)
@@ -65,21 +113,39 @@ class EnergyConsumptionTab extends ReportGraphTab
       com_user_savings: com_user_savings
       res_user_savings: res_user_savings
       scenarios: scenarios
-      comm_diff_no_pa_295: comm_diff_no_pa_295
-      comm_diff_pa_295: comm_diff_pa_295
-      comm_diff_double_pa_295: comm_diff_double_pa_295
 
+      res_pa295_diff: res_pa295_diff
+      res_has_savings_pa295: res_has_savings_pa295
+
+      res_no_pa295_diff: res_no_pa295_diff
+      res_has_savings_no_pa295: res_has_savings_no_pa295
+
+      res_dbl_pa295_diff: res_dbl_pa295_diff
+      res_has_savings_dbl_pa295: res_has_savings_dbl_pa295
+
+      comm_pa295_diff: comm_pa295_diff
+      comm_has_savings_pa295: comm_has_savings_pa295
+
+      comm_no_pa295_diff: comm_no_pa295_diff
+      comm_has_savings_no_pa295: comm_has_savings_no_pa295
+
+      comm_dbl_pa295_diff: comm_dbl_pa295_diff
+      comm_has_savings_dbl_pa295: comm_has_savings_dbl_pa295
+
+      res_sum: res_sum
+      comm_sum: comm_sum
       d3IsPresent: d3IsPresent
 
     @$el.html @template.render(context, partials)
     @enableLayerTogglers()
-    @$('.comm-chosen-ec').chosen({disable_search_threshold: 10, width:'400px'})
+    @$('.comm-chosen-ec').chosen({disable_search_threshold: 10, width:'200px'})
     @$('.comm-chosen-ec').change () =>
       @renderDiffs('.comm-chosen-ec', 'comm', 'ec')
 
-    @$('.res-chosen-ec').chosen({disable_search_threshold: 10, width:'400px'})
+    @$('.res-chosen-ec').chosen({disable_search_threshold: 10, width:'200px'})
     @$('.res-chosen-ec').change () =>
       @renderDiffs('.res-chosen-ec', 'res', 'ec')
+
 
     if window.d3
 

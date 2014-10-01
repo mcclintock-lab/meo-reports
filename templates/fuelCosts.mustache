@@ -4,17 +4,65 @@ In October 2008, Michigan enacted the <a href="http://www.legislature.mi.gov/(S(
 </p>
 <div class="reportSection tableContainer">
   <h4>Commercial Fuel Costs -- 2012 Dollars</h4>
-   <!-- <p>The total commercial fuel cost savings is <strong>${{com_user_savings}}</strong></p> -->
-  <p class="small ttip-tip">
+    <div class="chooser-div">
+      <div class="sel-label">Compare your plan to scenario:</div><select class="comm-chosen-fc">
+        <option class="default-chosen-selection" label="PA 295"></option>
+        {{#scenarios}}
+          <option value="{{.}}">{{.}}</option>
+        {{/scenarios}}
+      </select>
+    </div>
+  <p class="pa295_comm_fc">By 2035, your energy plan is estimated to have fuel costs that are <strong>
+  ${{comm_pa295_diff}}
+  {{#comm_has_savings_pa295}}LOWER{{/comm_has_savings_pa295}}
+  {{^comm_has_savings_pa295}}HIGHER{{/comm_has_savings_pa295}} 
+  </strong> than the <strong>PA 295</strong> scenario in the commercial sector.
   </p>
+  <p class="no_pa295_comm_fc">By 2035, your energy plan is estimated to have fuel costs that are<strong>
+  ${{comm_no_pa295_diff}}
+  {{#comm_has_savings_no_pa295}}LOWER{{/comm_has_savings_no_pa295}}
+  {{^comm_has_savings_no_pa295}}HIGHER{{/comm_has_savings_no_pa295}} 
+  </strong>  than the <strong>No PA 295</strong> scenario in the commercial sector.
+  </p>
+  <p class="dbl_pa295_comm_fc">By 2035, your energy plan is estimated to have fuel costs that are <strong>
+  ${{comm_dbl_pa295_diff}}
+  {{#comm_has_savings_dbl_pa295}}LOWER{{/comm_has_savings_dbl_pa295}}
+  {{^comm_has_savings_dbl_pa295}}HIGHER{{/comm_has_savings_dbl_pa295}} 
+  </strong>than the <strong>Double PA 295</strong> scenario in the commercial sector.
+  </p>
+
     <div  id="commercialFuelCosts" class="commercialFuelCosts"></div>
 </div>
 
 <div class="reportSection tableContainer">
   <h4>Residential Fuel Costs -- 2012 Dollars</h4>
-    <p>The sum total residential fuel cost savings by 2035 is <strong>${{res_user_savings}}</strong></p>
-  <p class="small ttip-tip">
+  <div class="chooser-div">
+    <div class="sel-label">Compare your plan to scenario:</div><select class="res-chosen-fc">
+      <option class="default-chosen-selection" label="PA 295"></option>
+      {{#scenarios}}
+        <option value="{{.}}">{{.}}</option>
+      {{/scenarios}}
+    </select>
+  </div>
+  <p class="pa295_res_fc">By 2035, your energy plan is estimated to have fuel costs that are <strong>
+  ${{res_pa295_diff}}
+  {{#res_has_savings_pa295}}LOWER{{/res_has_savings_pa295}}
+  {{^res_has_savings_pa295}}HIGHER{{/res_has_savings_pa295}} 
+  </strong> than the <strong>PA 295</strong> scenario in the residential sector.
   </p>
+  <p class="no_pa295_res_fc">By 2035, your energy plan is estimated to have fuel costs that are<strong>
+  ${{res_no_pa295_diff}}
+  {{#res_has_savings_no_pa295}}LOWER{{/res_has_savings_no_pa295}}
+  {{^res_has_savings_no_pa295}}HIGHER{{/res_has_savings_no_pa295}} 
+  </strong>  than the <strong>No PA 295</strong> scenario in the residential sector.
+  </p>
+  <p class="dbl_pa295_res_fc">By 2035, your energy plan is estimated to have fuel costs that are <strong>
+  ${{res_dbl_pa295_diff}}
+  {{#res_has_savings_dbl_pa295}}LOWER{{/res_has_savings_dbl_pa295}}
+  {{^res_has_savings_dbl_pa295}}HIGHER{{/res_has_savings_dbl_pa295}} 
+  </strong>than the <strong>Double PA 295</strong> scenario in the residential sector.
+  </p>
+
     <div  id="residentialFuelCosts" class="residentialFuelCosts"></div>
 </div>
 <p>The reports show fuel costs in the following scenarios:

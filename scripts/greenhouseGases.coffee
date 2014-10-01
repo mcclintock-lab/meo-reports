@@ -44,6 +44,56 @@ class GreenhouseGasesTab extends ReportGraphTab
       res_user_savings = @getUserSavings(resGHG, res_user,res_nopa, 1)
       sorted_res_results = [res_nopa, res_pa, res_dblpa, res_user]
 
+      scenarios = ['PA 295', 'No PA 295', 'Double PA 295']
+
+      res_sum = @recordSet("EnergyPlan", "ResGHGSum").float('USER_SUM', 1)
+      res_pa295_total_ghg =     @recordSet("EnergyPlan", "ResGHGSum").float('PA_SUM', 1)
+      res_no_pa295_total_ghg =  @recordSet("EnergyPlan", "ResGHGSum").float('NOPA_SUM', 1)
+      res_dbl_pa295_total_ghg = @recordSet("EnergyPlan", "ResGHGSum").float('DBLPA_SUM', 1)
+
+      res_pa295_diff = Math.round((res_pa295_total_ghg - res_sum),0)
+      res_has_savings_pa295 = res_pa295_diff > 0
+      if not res_has_savings_pa295
+        res_has_savings_pa295 = res_has_savings_pa295*-1
+      res_pa295_diff = @addCommas res_pa295_diff
+
+      res_no_pa295_diff = Math.round((res_no_pa295_total_ghg - res_sum),0)
+      res_has_savings_no_pa295 = res_no_pa295_diff > 0
+      if not res_has_savings_no_pa295
+        res_has_savings_no_pa295 = res_has_savings_no_pa295*-1
+      res_no_pa295_diff = @addCommas res_no_pa295_diff
+
+      res_dbl_pa295_diff = Math.round((res_dbl_pa295_total_ghg - res_sum),0)
+      res_has_savings_dbl_pa295 = res_dbl_pa295_diff > 0
+      if res_has_savings_dbl_pa295
+        res_has_savings_dbl_pa295 = res_has_savings_dbl_pa295*-1
+      res_dbl_pa295_diff = @addCommas res_dbl_pa295_diff
+
+      comm_sum = @recordSet("EnergyPlan", "ComGHGSum").float('USER_SUM', 1)
+      comm_pa295_total_ghg =     @recordSet("EnergyPlan", "ComGHGSum").float('PA_SUM', 1)
+      comm_no_pa295_total_ghg =  @recordSet("EnergyPlan", "ComGHGSum").float('NOPA_SUM', 1)
+      comm_dbl_pa295_total_ghg = @recordSet("EnergyPlan", "ComGHGSum").float('DBLPA_SUM', 1)
+
+      comm_pa295_diff = Math.round((comm_pa295_total_ghg - comm_sum),0)
+      comm_has_savings_pa295 = comm_pa295_diff > 0
+      if not comm_has_savings_pa295
+        comm_pa295_diff=comm_pa295_diff*-1
+      comm_pa295_diff = @addCommas comm_pa295_diff
+
+      comm_no_pa295_diff = Math.round((comm_no_pa295_total_ghg - comm_sum),0)
+      comm_has_savings_no_pa295 = comm_no_pa295_diff > 0
+      if not comm_has_savings_no_pa295
+        comm_no_pa295_diff = comm_no_pa295_diff*-1
+      comm_no_pa295_diff = @addCommas comm_no_pa295_diff
+
+
+
+      comm_dbl_pa295_diff = Math.round((comm_dbl_pa295_total_ghg - comm_sum),0)
+      comm_has_savings_dbl_pa295 = comm_dbl_pa295_diff > 0
+      if not comm_has_savings_dbl_pa295
+        comm_dbl_pa295_diff = comm_dbl_pa295_diff*-1
+      comm_dbl_pa295_diff = @addCommas comm_dbl_pa295_diff
+
     catch e
       console.log("error: ", e)
 
@@ -57,8 +107,35 @@ class GreenhouseGasesTab extends ReportGraphTab
       res_user_savings: res_user_savings
       d3IsPresent: d3IsPresent
 
+      scenarios: scenarios
+      res_pa295_diff: res_pa295_diff
+      res_has_savings_pa295: res_has_savings_pa295
+
+      res_no_pa295_diff: res_no_pa295_diff
+      res_has_savings_no_pa295: res_has_savings_no_pa295
+
+      res_dbl_pa295_diff: res_dbl_pa295_diff
+      res_has_savings_dbl_pa295: res_has_savings_dbl_pa295
+
+      comm_pa295_diff: comm_pa295_diff
+      comm_has_savings_pa295: comm_has_savings_pa295
+
+      comm_no_pa295_diff: comm_no_pa295_diff
+      comm_has_savings_no_pa295: comm_has_savings_no_pa295
+
+      comm_dbl_pa295_diff: comm_dbl_pa295_diff
+      comm_has_savings_dbl_pa295: comm_has_savings_dbl_pa295
+
     @$el.html @template.render(context, partials)
     @enableLayerTogglers()
+
+    @$('.comm-chosen-ghg').chosen({disable_search_threshold: 10, width:'200px'})
+    @$('.comm-chosen-ghg').change () =>
+      @renderDiffs('.comm-chosen-ghg', 'comm', 'ghg')
+
+    @$('.res-chosen-ghg').chosen({disable_search_threshold: 10, width:'200px'})
+    @$('.res-chosen-ghg').change () =>
+      @renderDiffs('.res-chosen-ghg', 'res', 'ghg')
 
     if window.d3
       h = 320

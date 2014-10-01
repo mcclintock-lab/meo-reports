@@ -428,21 +428,48 @@
 .total-value {
   margin-left: 20px;
 }
-.no_pa_295_comm_ec {
+.sel-label {
+  float: left;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.chooser-div {
+  margin-top: 10px;
+}
+.no_pa295_comm_ec {
   display: none;
 }
-.pa_295_comm_ec {
+.dbl_pa295_comm_ec {
   display: none;
 }
-.double_pa_295_comm_ec {
+.no_pa295_res_ec {
   display: none;
 }
-.no_pa_295_res_ec {
+.dbl_pa295_res_ec {
   display: none;
 }
-.pa_295_res_ec {
+.no_pa295_comm_fc {
   display: none;
 }
-.double_pa_295_res_ec {
+.dbl_pa295_comm_fc {
+  display: none;
+}
+.no_pa295_res_fc {
+  display: none;
+}
+.dbl_pa295_res_fc {
+  display: none;
+}
+.no_pa295_comm_ghg {
+  display: none;
+}
+.dbl_pa295_comm_ghg {
+  display: none;
+}
+.no_pa295_res_ghg {
+  display: none;
+}
+.dbl_pa295_res_ghg {
   display: none;
 }

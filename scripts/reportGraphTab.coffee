@@ -14,21 +14,22 @@ class ReportGraphTab extends ReportTab
 
   renderDiffs: (which_chosen, ce, tab) -> 
 
+
     name = @$(which_chosen).val()
     @$('.default-chosen-selection'+'_'+tab).hide()
 
     if name == "No PA 295"
-      @$(@getElemName('.no_pa_295', ce, tab)).show()
-      @$(@getElemName('.pa_295',ce,tab)).hide()
-      @$(@getElemName('.double_pa_295',ce,tab)).hide()
+      @$(@getElemName('.no_pa295', ce, tab)).show()
+      @$(@getElemName('.pa295',ce,tab)).hide()
+      @$(@getElemName('.dbl_pa295',ce,tab)).hide()
     else if name == "PA 295"
-      @$(@getElemName('.no_pa_295',ce,tab)).hide()
-      @$(@getElemName('.pa_295', ce, tab)).show()
-      @$(@getElemName('.double_pa_295',ce,tab)).hide()
+      @$(@getElemName('.no_pa295',ce,tab)).hide()
+      @$(@getElemName('.pa295', ce, tab)).show()
+      @$(@getElemName('.dbl_pa295',ce,tab)).hide()
     else
-      @$(@getElemName('.no_pa_295',ce,tab)).hide()
-      @$(@getElemName('.pa_295',ce,tab)).hide()
-      @$(@getElemName('.double_pa_295',ce,tab)).show()
+      @$(@getElemName('.no_pa295',ce,tab)).hide()
+      @$(@getElemName('.pa295',ce,tab)).hide()
+      @$(@getElemName('.dbl_pa295',ce,tab)).show()
 
   getElemName: (name, comm_or_ec, tab) ->
     return name+"_"+comm_or_ec+"_"+tab
@@ -61,6 +62,16 @@ class ReportGraphTab extends ReportTab
         scenario_values.push(rec)
 
     return _.sortBy scenario_values, (row) -> row['YEAR']
+  
+  addCommas: (num_str) =>
+    num_str += ''
+    x = num_str.split('.')
+    x1 = x[0]
+    x2 = if x.length > 1 then '.' + x[1] else ''
+    rgx = /(\d+)(\d{3})/
+    while rgx.test(x1)
+      x1 = x1.replace(rgx, '$1' + ',' + '$2')
+    return x1 + x2
 
   drawChart: (whichChart) =>
     view = @
