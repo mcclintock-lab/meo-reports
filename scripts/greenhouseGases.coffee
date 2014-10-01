@@ -54,19 +54,19 @@ class GreenhouseGasesTab extends ReportGraphTab
       res_pa295_diff = Math.round((res_pa295_total_ghg - res_sum),0)
       res_has_savings_pa295 = res_pa295_diff > 0
       if not res_has_savings_pa295
-        res_has_savings_pa295 = res_has_savings_pa295*-1
+        res_pa295_diff = Math.abs(res_pa295_diff)
       res_pa295_diff = @addCommas res_pa295_diff
 
       res_no_pa295_diff = Math.round((res_no_pa295_total_ghg - res_sum),0)
       res_has_savings_no_pa295 = res_no_pa295_diff > 0
       if not res_has_savings_no_pa295
-        res_has_savings_no_pa295 = res_has_savings_no_pa295*-1
+        res_no_pa295_diff = Math.abs(res_no_pa295_diff)
       res_no_pa295_diff = @addCommas res_no_pa295_diff
 
       res_dbl_pa295_diff = Math.round((res_dbl_pa295_total_ghg - res_sum),0)
       res_has_savings_dbl_pa295 = res_dbl_pa295_diff > 0
       if res_has_savings_dbl_pa295
-        res_has_savings_dbl_pa295 = res_has_savings_dbl_pa295*-1
+        res_dbl_pa295_diff = Math.abs(res_dbl_pa295_diff)
       res_dbl_pa295_diff = @addCommas res_dbl_pa295_diff
 
       comm_sum = @recordSet("EnergyPlan", "ComGHGSum").float('USER_SUM', 1)
@@ -77,13 +77,13 @@ class GreenhouseGasesTab extends ReportGraphTab
       comm_pa295_diff = Math.round((comm_pa295_total_ghg - comm_sum),0)
       comm_has_savings_pa295 = comm_pa295_diff > 0
       if not comm_has_savings_pa295
-        comm_pa295_diff=comm_pa295_diff*-1
+        comm_pa295_diff=Math.abs(comm_pa295_diff)
       comm_pa295_diff = @addCommas comm_pa295_diff
 
       comm_no_pa295_diff = Math.round((comm_no_pa295_total_ghg - comm_sum),0)
       comm_has_savings_no_pa295 = comm_no_pa295_diff > 0
       if not comm_has_savings_no_pa295
-        comm_no_pa295_diff = comm_no_pa295_diff*-1
+        comm_no_pa295_diff = Math.abs(comm_no_pa295_diff)
       comm_no_pa295_diff = @addCommas comm_no_pa295_diff
 
 
@@ -91,7 +91,7 @@ class GreenhouseGasesTab extends ReportGraphTab
       comm_dbl_pa295_diff = Math.round((comm_dbl_pa295_total_ghg - comm_sum),0)
       comm_has_savings_dbl_pa295 = comm_dbl_pa295_diff > 0
       if not comm_has_savings_dbl_pa295
-        comm_dbl_pa295_diff = comm_dbl_pa295_diff*-1
+        comm_dbl_pa295_diff = Math.abs(comm_dbl_pa295_diff)
       comm_dbl_pa295_diff = @addCommas comm_dbl_pa295_diff
 
     catch e

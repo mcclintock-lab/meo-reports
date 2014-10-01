@@ -25,6 +25,9 @@ class FuelCostsTab extends ReportGraphTab
     attributes = @model.getAttributes()
 
     try
+      msg = @recordSet("EnergyPlan", "ResultMsg")
+      console.log("......msg is ", msg)
+
       scenarios = ['PA 295', 'No PA 295', 'Double PA 295']
       comFC = @recordSet("EnergyPlan", "ComEC").toArray()
       resFC = @recordSet("EnergyPlan", "ResEC").toArray()
@@ -51,23 +54,27 @@ class FuelCostsTab extends ReportGraphTab
       res_no_pa295_total_fc =  @recordSet("EnergyPlan", "ResECSum").float('NOPA_SUM', 1)
       res_dbl_pa295_total_fc = @recordSet("EnergyPlan", "ResECSum").float('DBLPA_SUM', 1)
 
+
+
       res_pa295_diff = Math.round((res_pa295_total_fc - res_sum),0)
       res_has_savings_pa295 = res_pa295_diff > 0
       if not res_has_savings_pa295
-        res_has_savings_pa295 = res_has_savings_pa295*-1
+        res_pa295_diff = Math.abs(res_pa295_diff)
       res_pa295_diff = @addCommas res_pa295_diff
 
       res_no_pa295_diff = Math.round((res_no_pa295_total_fc - res_sum),0)
       res_has_savings_no_pa295 = res_no_pa295_diff > 0
       if not res_has_savings_no_pa295
-        res_has_savings_no_pa295 = res_has_savings_no_pa295*-1
+        res_no_pa295_diff = Math.abs(res_no_pa295_diff)
       res_no_pa295_diff = @addCommas res_no_pa295_diff
-
+      
       res_dbl_pa295_diff = Math.round((res_dbl_pa295_total_fc - res_sum),0)
       res_has_savings_dbl_pa295 = res_dbl_pa295_diff > 0
-      if res_has_savings_dbl_pa295
-        res_has_savings_dbl_pa295 = res_has_savings_dbl_pa295*-1
+      if not res_has_savings_dbl_pa295
+        res_dbl_pa295_diff =  Math.abs(res_dbl_pa295_diff)
       res_dbl_pa295_diff = @addCommas res_dbl_pa295_diff
+
+
 
       comm_sum = @recordSet("EnergyPlan", "ComECSum").float('USER_SUM', 1)
       comm_pa295_total_fc =     @recordSet("EnergyPlan", "ComECSum").float('PA_SUM', 1)
@@ -77,21 +84,20 @@ class FuelCostsTab extends ReportGraphTab
       comm_pa295_diff = Math.round((comm_pa295_total_fc - comm_sum),0)
       comm_has_savings_pa295 = comm_pa295_diff > 0
       if not comm_has_savings_pa295
-        comm_pa295_diff=comm_pa295_diff*-1
+        comm_pa295_diff=Math.abs(comm_pa295_diff)
       comm_pa295_diff = @addCommas comm_pa295_diff
 
       comm_no_pa295_diff = Math.round((comm_no_pa295_total_fc - comm_sum),0)
       comm_has_savings_no_pa295 = comm_no_pa295_diff > 0
       if not comm_has_savings_no_pa295
-        comm_no_pa295_diff = comm_no_pa295_diff*-1
+        comm_no_pa295_diff = Math.abs(comm_no_pa295_diff)
       comm_no_pa295_diff = @addCommas comm_no_pa295_diff
-
 
 
       comm_dbl_pa295_diff = Math.round((comm_dbl_pa295_total_fc - comm_sum),0)
       comm_has_savings_dbl_pa295 = comm_dbl_pa295_diff > 0
       if not comm_has_savings_dbl_pa295
-        comm_dbl_pa295_diff = comm_dbl_pa295_diff*-1
+        comm_dbl_pa295_diff = Math.abs(comm_dbl_pa295_diff)
       comm_dbl_pa295_diff = @addCommas comm_dbl_pa295_diff
 
     catch e
