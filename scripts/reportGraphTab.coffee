@@ -429,7 +429,7 @@ class ReportGraphTab extends ReportTab
         return "User Scenario"
 
   getStrokeColor = (scenario) ->
-    pacolor = "#9aba8c"
+    pacolor = "#4682B4"
     nopacolor = "#e5cace"
     dblpacolor = "#b3cfa7"
     for d in scenario
