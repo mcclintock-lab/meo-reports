@@ -34,6 +34,9 @@ class ReportGraphTab extends ReportTab
   getElemName: (name, comm_or_ec, tab) ->
     return name+"_"+comm_or_ec+"_"+tab
 
+  getDirClass: (dir) ->
+    return if dir then 'positive' else 'negative'
+    
   getUserSavings: (recSet, user_start_values, base_values, decs) ->
 
     savings = 0
@@ -225,21 +228,25 @@ class ReportGraphTab extends ReportTab
              .attr("x1", margin.left+10)
              .attr("x2", margin.left+15)
              .attr("fill", "none")
-              .attr("stroke", tickcolor)
+             .attr("stroke", tickcolor)
              .attr("stroke-width", 1)
              .style("pointer-events", "none")
+
+        yaxis_loc = (d) -> yscale(d)+3
+        xaxis_loc = (margin.left-4)-axispos.ylabel
+
         yaxis.selectAll("empty")
              .data(yticks)
              .enter()
              .append("text")
-             .attr("y", (d) -> yscale(d)+3)
-             .attr("x", margin.left+3-axispos.ylabel)
+             .attr("y", yaxis_loc)
+             .attr("x", xaxis_loc)
              .text((d) -> formatAxis(yticks)(d))
         yaxis.append("text").attr("class", "title")
              .attr("y", margin.top+35+height/2)
-             .attr("x", margin.left+8-axispos.ytitle)
+             .attr("x", margin.left+6-axispos.ytitle)
              .text(ylab)
-             .attr("transform", "rotate(270,#{margin.left+8-axispos.ytitle},#{margin.top+35+height/2})")
+             .attr("transform", "rotate(270,#{margin.left+4-axispos.ytitle},#{margin.top+35+height/2})")
 
         points = g.append("g").attr("id", "points")
 

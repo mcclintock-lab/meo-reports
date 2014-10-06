@@ -14,16 +14,27 @@
     </select>
   </div>
 
+  <div class="pa295_comm_ec">
+    <span class="diff {{comm_pa295_dir}}">{{comm_pa295_perc_diff}}</span>
+  </div>
   <p class="pa295_comm_ec">By 2035, your energy plan is estimated to <strong>
   {{#comm_has_savings_pa295}}SAVE{{/comm_has_savings_pa295}}
   {{^comm_has_savings_pa295}}USE{{/comm_has_savings_pa295}} 
   {{comm_pa295_diff}}</strong> more MMBTU equivalent energy than the <strong>PA 295</strong> scenario in the commercial sector.
   </p>
+
+  <div class="no_pa295_comm_ec">
+    <span class="diff {{comm_no_pa295_dir}}">{{comm_no_pa295_perc_diff}}</span>
+  </div>
   <p class="no_pa295_comm_ec">By 2035, your energy plan is estimated to  <strong>
   {{#comm_has_savings_no_pa295}}SAVE{{/comm_has_savings_no_pa295}}
   {{^comm_has_savings_no_pa295}}USE{{/comm_has_savings_no_pa295}} 
   {{comm_no_pa295_diff}}</strong> more MMBTU equivalent energy than the <strong>No PA 295</strong> scenario in the commercial sector.
   </p>
+
+  <div class="dbl_pa295_comm_ec">
+    <span class="diff {{comm_dbl_pa295_dir}}">{{comm_dbl_pa295_perc_diff}}</span>
+  </div>
   <p class="dbl_pa295_comm_ec">By 2035, your energy plan is estimated to <strong>
   {{#comm_has_savings_dbl_pa295}}SAVE{{/comm_has_savings_dbl_pa295}}
   {{^comm_has_savings_dbl_pa295}}USE{{/comm_has_savings_dbl_pa295}} 
@@ -44,14 +55,26 @@
       </select>
     </div>
 
+
+  <div class="pa295_res_ec">
+    <span class="diff {{res_pa295_dir}}">{{res_pa295_perc_diff}}</span>
+  </div>
   <p class="pa295_res_ec">By 2035, your energy plan is estimated to <strong>{{#res_has_savings_pa295}}SAVE{{/res_has_savings_pa295}}
   {{^res_has_savings_pa295}}USE{{/res_has_savings_pa295}} 
   {{res_pa295_diff}}</strong> more MMBTU equivalent energy than the <strong>PA 295</strong> scenario in the residential sector.
   </p>
+
+  <div class="no_pa295_res_ec">
+    <span class="diff {{res_no_pa295_dir}}">{{res_no_pa295_perc_diff}}</span>
+  </div>
   <p class="no_pa295_res_ec">By 2035, your energy plan is estimated to  <strong>{{#res_has_savings_no_pa295}}SAVE{{/res_has_savings_no_pa295}}
   {{^res_has_savings_no_pa295}}USE{{/res_has_savings_no_pa295}} 
   {{res_no_pa295_diff}}</strong> more MMBTU equivalent energy than the <strong>No PA 295</strong> scenario in the residential sector.
   </p>
+
+  <div class="dbl_pa295_res_ec">
+    <span class="diff {{res_dbl_pa295_dir}}">{{res_dbl_pa295_perc_diff}}</span>
+  </div>
   <p class="dbl_pa295_res_ec">By 2035, your energy plan is estimated to <strong>{{#res_has_savings_dbl_pa295}}SAVE{{/res_has_savings_dbl_pa295}}
   {{^res_has_savings_dbl_pa295}}USE{{/res_has_savings_dbl_pa295}} 
   {{res_dbl_pa295_diff}}</strong> more MMBTU equivalent energy than the <strong>Double PA 295</strong> scenario in the residential sector.

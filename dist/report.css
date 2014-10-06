@@ -362,6 +362,42 @@
 .reportView .reportSection.tableContainer p {
   padding: 10px;
 }
+.diff {
+  margin-top: 10px;
+  margin-left: 10px;
+  top: 10px;
+  font-size: 22px;
+  width: 380px;
+  display: block;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+}
+.diff.positive {
+  color: green;
+}
+.diff.positive:before {
+  font-family: 'IconicStroke';
+  content: '↑ ';
+  color: green;
+}
+.diff.positive:after {
+  content: '% Savings';
+  color: green;
+}
+.diff.negative {
+  color: #8b1a1a;
+}
+.diff.negative:before {
+  font-family: 'IconicStroke';
+  content: '↑ ';
+  color: #8b1a1a;
+}
+.diff.negative:after {
+  content: '% Use';
+  color: #8b1a1a;
+}
+.diff.nochange:before {
+  content: '';
+}
 .viz {
   position: relative;
   margin-left: 20px;

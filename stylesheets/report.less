@@ -1,5 +1,50 @@
 @import '../node_modules/seasketch-reporting-api/stylesheets/common.less';
 
+
+.diff {
+  margin-top:10px;
+  margin-left:10px;
+  top:10px;
+  font-size:22px;
+  width:380px;
+  display:block;
+  text-shadow:1px 1px 0px rgba(0,0,0,0.2);
+
+
+  &.positive {
+    color: green;
+  }
+  &.positive:before {
+    font-family:'IconicStroke';
+    content:'↑ ';
+    color:green;
+  }
+  &.positive:after {
+    content: '% Savings';
+    color: green;
+  }  
+
+  &.negative {
+    color:#8B1A1A
+  }
+  &.negative:before {
+    font-family:'IconicStroke';
+    content:'↑ ';
+    color:#8B1A1A
+  }
+
+  &.negative:after {
+    content: '% Use';
+    color:#8B1A1A
+  }
+
+  &.nochange:before {
+    content: '';
+  }
+}
+
+
+
 .viz {
   position:relative;
   margin-left: 20px;
