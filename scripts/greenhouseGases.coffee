@@ -52,18 +52,21 @@ class GreenhouseGasesTab extends ReportGraphTab
       res_dbl_pa295_total_ghg = @recordSet("EnergyPlan", "ResGHGSum").float('DBLPA_SUM', 1)
 
       res_pa295_diff = Math.round((res_pa295_total_ghg - res_sum),0)
+      res_pa295_perc_diff = Math.round(((Math.abs(res_pa295_diff)/res_sum)*100),0)
       res_has_savings_pa295 = res_pa295_diff > 0
       if not res_has_savings_pa295
         res_pa295_diff = Math.abs(res_pa295_diff)
       res_pa295_diff = @addCommas res_pa295_diff
 
       res_no_pa295_diff = Math.round((res_no_pa295_total_ghg - res_sum),0)
+      res_no_pa295_perc_diff = Math.round(((Math.abs(res_no_pa295_diff)/res_sum)*100),0)
       res_has_savings_no_pa295 = res_no_pa295_diff > 0
       if not res_has_savings_no_pa295
         res_no_pa295_diff = Math.abs(res_no_pa295_diff)
       res_no_pa295_diff = @addCommas res_no_pa295_diff
 
       res_dbl_pa295_diff = Math.round((res_dbl_pa295_total_ghg - res_sum),0)
+      res_dbl_pa295_perc_diff = Math.round(((Math.abs(res_dbl_pa295_diff)/res_sum)*100),0)
       res_has_savings_dbl_pa295 = res_dbl_pa295_diff > 0
       if res_has_savings_dbl_pa295
         res_dbl_pa295_diff = Math.abs(res_dbl_pa295_diff)
@@ -75,12 +78,14 @@ class GreenhouseGasesTab extends ReportGraphTab
       comm_dbl_pa295_total_ghg = @recordSet("EnergyPlan", "ComGHGSum").float('DBLPA_SUM', 1)
 
       comm_pa295_diff = Math.round((comm_pa295_total_ghg - comm_sum),0)
+      comm_pa295_perc_diff = Math.round(((Math.abs(comm_pa295_diff)/comm_sum)*100),0)
       comm_has_savings_pa295 = comm_pa295_diff > 0
       if not comm_has_savings_pa295
         comm_pa295_diff=Math.abs(comm_pa295_diff)
       comm_pa295_diff = @addCommas comm_pa295_diff
 
       comm_no_pa295_diff = Math.round((comm_no_pa295_total_ghg - comm_sum),0)
+      comm_no_pa295_perc_diff = Math.round(((Math.abs(comm_no_pa295_diff)/comm_sum)*100),0)
       comm_has_savings_no_pa295 = comm_no_pa295_diff > 0
       if not comm_has_savings_no_pa295
         comm_no_pa295_diff = Math.abs(comm_no_pa295_diff)
@@ -89,6 +94,7 @@ class GreenhouseGasesTab extends ReportGraphTab
 
 
       comm_dbl_pa295_diff = Math.round((comm_dbl_pa295_total_ghg - comm_sum),0)
+      comm_dbl_pa295_perc_diff = Math.round(((Math.abs(comm_dbl_pa295_diff)/comm_sum)*100),0)
       comm_has_savings_dbl_pa295 = comm_dbl_pa295_diff > 0
       if not comm_has_savings_dbl_pa295
         comm_dbl_pa295_diff = Math.abs(comm_dbl_pa295_diff)
@@ -110,21 +116,34 @@ class GreenhouseGasesTab extends ReportGraphTab
       scenarios: scenarios
       res_pa295_diff: res_pa295_diff
       res_has_savings_pa295: res_has_savings_pa295
+      res_pa295_dir: @getDirClass res_has_savings_pa295
+      res_pa295_perc_diff: res_pa295_perc_diff
 
       res_no_pa295_diff: res_no_pa295_diff
       res_has_savings_no_pa295: res_has_savings_no_pa295
+      res_no_pa295_dir: @getDirClass res_has_savings_no_pa295
+      res_no_pa295_perc_diff: res_no_pa295_perc_diff
+
 
       res_dbl_pa295_diff: res_dbl_pa295_diff
       res_has_savings_dbl_pa295: res_has_savings_dbl_pa295
+      res_dbl_pa295_dir: @getDirClass res_has_savings_dbl_pa295
+      res_dbl_pa295_perc_diff: res_dbl_pa295_perc_diff
 
       comm_pa295_diff: comm_pa295_diff
       comm_has_savings_pa295: comm_has_savings_pa295
+      comm_pa295_dir: @getDirClass comm_has_savings_pa295
+      comm_pa295_perc_diff: comm_pa295_perc_diff
 
       comm_no_pa295_diff: comm_no_pa295_diff
       comm_has_savings_no_pa295: comm_has_savings_no_pa295
+      comm_no_pa295_dir: @getDirClass comm_has_savings_no_pa295
+      comm_no_pa295_perc_diff: comm_no_pa295_perc_diff
 
       comm_dbl_pa295_diff: comm_dbl_pa295_diff
       comm_has_savings_dbl_pa295: comm_has_savings_dbl_pa295
+      comm_dbl_pa295_dir: @getDirClass comm_has_savings_dbl_pa295
+      comm_dbl_pa295_perc_diff: comm_dbl_pa295_perc_diff
 
     @$el.html @template.render(context, partials)
     @enableLayerTogglers()

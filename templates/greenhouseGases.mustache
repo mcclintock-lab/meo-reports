@@ -11,19 +11,29 @@ In October 2008, Michigan enacted the <a href="http://www.legislature.mi.gov/(S(
         {{/scenarios}}
       </select>
     </div>
+  <div class="pa295_comm_ghg">
+    <span class="diff {{comm_pa295_dir}}">{{comm_pa295_perc_diff}}</span>
+  </div>
   <p class="pa295_comm_ghg">By 2035, your energy plan is estimated to<strong>
   {{#comm_has_savings_pa295}}REDUCE{{/comm_has_savings_pa295}}
   {{^comm_has_savings_pa295}}INCREASE {{/comm_has_savings_pa295}} 
   </strong> GHGs by <strong>{{comm_pa295_diff}}</strong> CO2-e compared to the <strong>PA 295</strong> scenario in the commercial sector.
   </p>
+
+  <div class="no_pa295_comm_ghg">
+    <span class="diff {{comm_no_pa295_dir}}">{{comm_no_pa295_perc_diff}}</span>
+  </div>
   <p class="no_pa295_comm_ghg">By 2035, your energy plan is estimated to <strong>
   
   {{#comm_has_savings_no_pa295}}REDUCE{{/comm_has_savings_no_pa295}}
   {{^comm_has_savings_no_pa295}}INCREASE{{/comm_has_savings_no_pa295}} 
   </strong> GHGs by <strong>{{comm_no_pa295_diff}}</strong> CO2-e compared to the <strong>No PA 295</strong> scenario in the commercial sector.
   </p>
+
+  <div class="dbl_pa295_comm_ghg">
+    <span class="diff {{comm_dbl_pa295_dir}}">{{comm_dbl_pa295_perc_diff}}</span>
+  </div>
   <p class="dbl_pa295_comm_ghg">By 2035, your energy plan is estimated to  <strong>
-  
   {{#comm_has_savings_dbl_pa295}}REDUCE{{/comm_has_savings_dbl_pa295}}
   {{^comm_has_savings_dbl_pa295}}INCREASE{{/comm_has_savings_dbl_pa295}} 
   </strong>GHGs by <strong>{{comm_dbl_pa295_diff}}</strong> CO2-e compared to the <strong>Double PA 295</strong> scenario in the commercial sector.
@@ -41,24 +51,32 @@ In October 2008, Michigan enacted the <a href="http://www.legislature.mi.gov/(S(
         {{/scenarios}}
       </select>
     </div>
+
+  <div class="pa295_res_ghg">
+    <span class="diff {{res_pa295_dir}}">{{res_pa295_perc_diff}}</span>
+  </div>
   <p class="pa295_res_ghg">By 2035, your energy plan is estimated to<strong>
-  
   {{#res_has_savings_pa295}}REDUCE{{/res_has_savings_pa295}}
   {{^res_has_savings_pa295}}INCREASE {{/res_has_savings_pa295}} 
   </strong> GHGs by <strong>{{res_pa295_diff}}</strong> CO2-e compared to the <strong>PA 295</strong> scenario in the residential sector.
   </p>
+  <div class="no_pa295_res_ghg">
+    <span class="diff {{res_no_pa295_dir}}">{{res_no_pa295_perc_diff}}</span>
+  </div>
   <p class="no_pa295_res_ghg">By 2035, your energy plan is estimated to <strong>
   {{#res_has_savings_no_pa295}}REDUCE{{/res_has_savings_no_pa295}}
   {{^res_has_savings_no_pa295}}INCREASE{{/res_has_savings_no_pa295}} 
   </strong> GHGs by <strong>{{res_no_pa295_diff}}</strong> CO2-e compared to the <strong>No PA 295</strong> scenario in the residential sector.
   </p>
+
+  <div class="dbl_pa295_res_ghg">
+    <span class="diff {{res_dbl_pa295_dir}}">{{res_dbl_pa295_perc_diff}}</span>
+  </div>
   <p class="dbl_pa295_res_ghg">By 2035, your energy plan is estimated to  <strong>
-  
   {{#res_has_savings_dbl_pa295}}REDUCE{{/res_has_savings_dbl_pa295}}
   {{^res_has_savings_dbl_pa295}}INCREASE{{/res_has_savings_dbl_pa295}} 
   </strong>GHGs by <strong>{{res_dbl_pa295_diff}}</strong> CO2-e compared to the <strong>Double PA 295</strong> scenario in the residential sector.
   </p>
-
     <div id="residentialGreenhouseGases" class="residentialGreenhouseGases"></div>
 </div>
 <p>The reports show greenhouse gas emissions in the following scenarios:
