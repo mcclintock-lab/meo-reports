@@ -25,11 +25,12 @@ class EnergyConsumptionTab extends ReportGraphTab
     try
       
       msg = @recordSet("EnergyPlan", "ResultMsg")
+      
       console.log("msg is ", msg)
 
       comEC = @recordSet("EnergyPlan", "ComEU").toArray()
       resEC = @recordSet("EnergyPlan", "ResEU").toArray()
-
+      console.log("----------------resEC is ", resEC)
 
       com_pa = @getMap(comEC, "PA")
       com_dblpa = @getMap(comEC, "DblPA")
@@ -46,6 +47,7 @@ class EnergyConsumptionTab extends ReportGraphTab
       res_nopa = @getMap(resEC, "NoPA")
       
       res_user = @getUserMap(resEC, "USER", res_nopa)
+      console.log("res_user is ", res_user)
       res_user_savings = @getUserSavings(resEC, res_user, res_nopa, 1)
       sorted_res_results = [res_nopa, res_pa, res_dblpa, res_user]
 

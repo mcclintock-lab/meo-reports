@@ -52,7 +52,7 @@ class ReportGraphTab extends ReportTab
   getUserMap: (recSet, user_tag, base_values) ->
     user_start_values = []
     for rec in recSet
-      if rec and rec.TYPE == user_tag
+      if rec and (rec.TYPE == user_tag)
         user_start_values.push(rec)
     user_start_values = _.sortBy user_start_values, (row) -> row['YEAR']
     return user_start_values
@@ -108,7 +108,7 @@ class ReportGraphTab extends ReportTab
       selection.each (data) ->
         y = []
         x = [2012, 2015, 2020, 2025, 2030, 2035]
-       
+        console.log("data::::", data)
         for scen in data
           for d in scen
             y.push(d.VALUE/1000000)

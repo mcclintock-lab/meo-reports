@@ -39,6 +39,7 @@ class GreenhouseGasesTab extends ReportGraphTab
       res_pa = @getMap(resGHG, "PA")
       res_dblpa = @getMap(resGHG, "DblPA")
       res_nopa = @getMap(resGHG, "NoPA")
+      console.log("resnopa ghg is:::---", res_nopa)
       
       res_user = @getUserMap(resGHG, "USER", res_nopa)
       res_user_savings = @getUserSavings(resGHG, res_user,res_nopa, 1)

@@ -43,6 +43,7 @@ class FuelCostsTab extends ReportGraphTab
       res_pa = @getMap(resFC, "PA")
       res_dblpa = @getMap(resFC, "DblPA")
       res_nopa = @getMap(resFC, "NoPA")
+      console.log("resnopa is::::", res_nopa)
       
       res_user = @getUserMap(resFC, "USER", res_nopa)
       res_user_savings = @getUserSavings(resFC, res_user, res_nopa, 2)
