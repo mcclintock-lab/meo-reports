@@ -21,16 +21,15 @@ class EnergyConsumptionTab extends ReportGraphTab
       d3IsPresent = true
     else
       d3IsPresent = false
-
     try
       
       msg = @recordSet("EnergyPlan", "ResultMsg")
-      
-      console.log("msg is ", msg)
-
+      console.log("---------------")
+      console.log("result msg is ", msg)
+      console.log("---------------")
       comEC = @recordSet("EnergyPlan", "ComEU").toArray()
       resEC = @recordSet("EnergyPlan", "ResEU").toArray()
-      console.log("----------------resEC is ", resEC)
+      
 
       com_pa = @getMap(comEC, "PA")
       com_dblpa = @getMap(comEC, "DblPA")
@@ -49,32 +48,40 @@ class EnergyConsumptionTab extends ReportGraphTab
       res_user = @getUserMap(resEC, "USER", res_nopa)
       console.log("res_user is ", res_user)
       res_user_savings = @getUserSavings(resEC, res_user, res_nopa, 1)
+      console.log("res user savings is: ", res_user)
       sorted_res_results = [res_nopa, res_pa, res_dblpa, res_user]
 
 
       scenarios = ['','PA 295', 'No PA 295', 'Double PA 295']
 
       res_sum = @recordSet("EnergyPlan", "ResEUSum").float('USER_SUM', 1)
+      console.log("res sum rec set is ", @recordSet("EnergyPlan", "ResEUSum"))
       res_pa295_total_ec =  @recordSet("EnergyPlan", "ResEUSum").float('PA_SUM', 1)
       res_no_pa295_total_ec =  @recordSet("EnergyPlan", "ResEUSum").float('NOPA_SUM', 1)
       res_dbl_pa295_total_ec = @recordSet("EnergyPlan", "ResEUSum").float('DBLPA_SUM', 1)
 
+      
+      console.log("res no pa295 is", res_no_pa295_total_ec)
       res_pa295_diff = Math.round((res_pa295_total_ec - res_sum),0)
-      res_pa295_perc_diff = Math.round(((Math.abs(res_pa295_diff)/res_sum)*100),0)
+
+      res_pa295_perc_diff = Math.round(((Math.abs(res_pa295_diff)/res_no_pa295_total_ec)*100),0)
       res_has_savings_pa295 = res_pa295_diff > 0
       if not res_has_savings_pa295
         res_pa295_diff = Math.abs(res_pa295_diff)
       res_pa295_diff = @addCommas res_pa295_diff
   
       res_no_pa295_diff = Math.round((res_no_pa295_total_ec - res_sum),0)
-      res_no_pa295_perc_diff = Math.round(((Math.abs(res_no_pa295_diff)/res_sum)*100),0)
+      console.log("res no pa diff is ", res_no_pa295_diff)
+      res_no_pa295_perc_diff = Math.round(((Math.abs(res_no_pa295_diff)/res_no_pa295_total_ec)*100),0)
+      console.log("res no pa diff percent is ", res_no_pa295_perc_diff)
+
       res_has_savings_no_pa295 = res_no_pa295_diff > 0
       if not res_has_savings_no_pa295
         res_no_pa295_diff = Math.abs(res_no_pa295_diff)
       res_no_pa295_diff = @addCommas res_no_pa295_diff
 
       res_dbl_pa295_diff =  Math.round((res_dbl_pa295_total_ec - res_sum),0)
-      res_dbl_pa295_perc_diff = Math.round(((Math.abs(res_dbl_pa295_diff)/res_sum)*100),0)
+      res_dbl_pa295_perc_diff = Math.round(((Math.abs(res_dbl_pa295_diff)/res_dbl_pa295_total_ec)*100),0)
       res_has_savings_dbl_pa295 = res_dbl_pa295_diff > 0
       if res_has_savings_dbl_pa295
         res_dbl_pa295_diff = Math.abs(res_dbl_pa295_diff)
@@ -86,21 +93,21 @@ class EnergyConsumptionTab extends ReportGraphTab
       comm_dbl_pa295_total_ec = @recordSet("EnergyPlan", "ComEUSum").float('DBLPA_SUM', 1)
 
       comm_pa295_diff = Math.round((comm_pa295_total_ec - comm_sum),0)
-      comm_pa295_perc_diff = Math.round(((Math.abs(comm_pa295_diff)/comm_sum)*100),0)
+      comm_pa295_perc_diff = Math.round(((Math.abs(comm_pa295_diff)/comm_pa295_total_ec)*100),0)
       comm_has_savings_pa295 = comm_pa295_diff > 0
       if not comm_has_savings_pa295
         comm_pa295_diff=Math.abs(comm_pa295_diff)
       comm_pa295_diff = @addCommas comm_pa295_diff
 
       comm_no_pa295_diff =  Math.round((comm_no_pa295_total_ec - comm_sum),0)
-      comm_no_pa295_perc_diff = Math.round(((Math.abs(comm_no_pa295_diff)/comm_sum)*100),0)
+      comm_no_pa295_perc_diff = Math.round(((Math.abs(comm_no_pa295_diff)/comm_no_pa295_total_ec)*100),0)
       comm_has_savings_no_pa295 = comm_no_pa295_diff > 0
       if not comm_has_savings_no_pa295
         comm_no_pa295_diff = Math.abs(comm_no_pa295_diff)
       comm_no_pa295_diff = @addCommas comm_no_pa295_diff
 
       comm_dbl_pa295_diff = Math.round((comm_dbl_pa295_total_ec - comm_sum),0)
-      comm_dbl_pa295_perc_diff = Math.round(((Math.abs(comm_dbl_pa295_diff)/comm_sum)*100),0)
+      comm_dbl_pa295_perc_diff = Math.round(((Math.abs(comm_dbl_pa295_diff)/comm_dbl_pa295_total_ec)*100),0)
       comm_has_savings_dbl_pa295 = comm_dbl_pa295_diff > 0
       if not comm_has_savings_dbl_pa295
         comm_dbl_pa295_diff = Math.abs(comm_dbl_pa295_diff)
