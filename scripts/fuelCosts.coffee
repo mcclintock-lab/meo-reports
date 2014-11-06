@@ -26,7 +26,7 @@ class FuelCostsTab extends ReportGraphTab
 
     try
       msg = @recordSet("EnergyPlan", "ResultMsg")
-      console.log("......msg is ", msg)
+      console.log("return msg: ", msg)
 
       scenarios = ['PA 295', 'No PA 295', 'Double PA 295']
       comFC = @recordSet("EnergyPlan", "ComEC").toArray()
@@ -43,7 +43,7 @@ class FuelCostsTab extends ReportGraphTab
       res_pa = @getMap(resFC, "PA")
       res_dblpa = @getMap(resFC, "DblPA")
       res_nopa = @getMap(resFC, "NoPA")
-      console.log("resnopa is::::", res_nopa)
+
       
       res_user = @getUserMap(resFC, "USER", res_nopa)
       res_user_savings = @getUserSavings(resFC, res_user, res_nopa, 2)
@@ -64,7 +64,10 @@ class FuelCostsTab extends ReportGraphTab
         res_pa295_diff = Math.abs(res_pa295_diff)
       res_pa295_diff = @addCommas res_pa295_diff
 
+
       res_no_pa295_diff = Math.round((res_no_pa295_total_fc - res_sum),0)
+
+
       res_no_pa295_perc_diff = Math.round(((Math.abs(res_no_pa295_diff)/res_no_pa295_total_fc)*100),0)
       res_has_savings_no_pa295 = res_no_pa295_diff > 0
       if not res_has_savings_no_pa295
